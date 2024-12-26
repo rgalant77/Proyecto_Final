@@ -1,0 +1,35 @@
+{% extends "productos/base.html" %}
+
+{% load static %}
+
+
+{% block main %}
+<section class="about-section text-center" id="about">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="text-white mb-4">Vive la montaña, vive la pasión</h2>
+                <p class="text-white-50">
+                    Desde la cumbre hasta el valle, inspira tus aventuras con equipo de calidad.
+                    <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
+                    Porque cada montaña tiene una historia y queremos ser parte de la tuya.
+                </p>
+            </div>
+        </div>
+        <img class="img-fluid" src="{% static 'productos/assets/img/mountain.jpg' %}" alt="..." />
+    </div>
+</section>
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+    <div class="col-lg-6"><img class="img-fluid" src="{% static 'productos/assets/img/21158.jpg' %}" alt="..." /></div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">Elegancia en cada descenso</h4>
+                    <p class="mb-0 text-white-50">Equípate con los mejores esquís diseñados para rendimiento y comodidad. Vive la experiencia de esquiar como nunca antes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

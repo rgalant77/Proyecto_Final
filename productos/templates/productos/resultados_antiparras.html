@@ -1,0 +1,15 @@
+{% extends 'productos/base.html' %}
+
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block main %}
+
+<ul>
+{% for antiparras in list_antiparras %}
+    <li>Antiparras: {{ antiparras.marca }} | Modelo: {{ antiparras.modelo }}</li>
+{% endfor %}
+</ul>
+
+{% endblock main %}
