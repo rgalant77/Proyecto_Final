@@ -6,7 +6,12 @@ urlpatterns = [
     path('', views.inicio, name= "inicio"),
     path('snowboard/', views.snowboard, name= "snowboard"),
     path('ski/', views.ski, name= "ski"),
-    path('antiparras/', views.antiparras, name= "antiparras")
+    path('antiparras/', views.antiparras, name= "antiparras"),
+    path('snowboard-vbc/', views.SnowboardListView.as_view(), name= "ListaSnowboard"),
+    path('snowboard-crear', views.SnowboardCreateView.as_view(), name= "CrearSnowboard"),
+    path('snowboard-ver/<pk>/', views.SnowboardDetailView.as_view(), name= "VerSnowboard"), 
+    path('snowboard-editar/<pk>/', views.SnowboardUpdateView.as_view(), name= "EditarSnowboard"), 
+    path('snowboard-confirmar-borrar/<pk>/', views.SnowboardDeleteView.as_view(), name= "BorrarSnowboard") 
 ]
 
 forms_snowboard = [

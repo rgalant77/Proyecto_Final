@@ -4,6 +4,7 @@ from productos.forms import SkiFormulario
 from productos.forms import AntiparrasFormulario
 from productos.forms import BuscaAntiparrasForm
 from .models import Snowboard, Ski, Antiparras
+from productos.forms import BuscaAntiparrasForm
 
 # Create your views here.
 from django.http import HttpResponse
@@ -81,7 +82,6 @@ def form_Antiparras(request):
 
 
 
-from productos.forms import BuscaAntiparrasForm
 
 def buscar_antiparra(request):
     if request.method == "POST":
@@ -99,3 +99,39 @@ def buscar_antiparra(request):
     return render(request, "productos/buscar_antiparras.html", {"mi_formulario": mi_formulario})
 
 
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+
+class SnowboardListView (ListView):
+    model= Snowboard
+    context_object_name= "list_snowboard"
+    template_name= "productos/snowboard_lista.html"
+    
+class SnowboardDetailView (DetailView):
+    model= Snowboard
+    template_name= "productos/snowboard_detalle.html"
+    
+
+class SnowboardCreateView (CreateView):
+    model= Snowboard
+    template_name= "productos/snowboard_crear.html"
+    success_url= reverse_lazy ('ListaSnowboard')
+    fields = ['marca', 'modelo', 'tamaño', 'color']
+    
+class SnowboardUpdateView (UpdateView):
+    model= Snowboard
+    template_name= "productos/snowboard_editar.html"
+    success_url= reverse_lazy ('ListaSnowboard')
+    fields = ['marca', 'modelo', 'tamaño', 'color']
+    
+class SnowboardDeleteView (DeleteView):
+    model= Snowboard
+    template_name= "productos/snowboard_borrar.html"
+    success_url= reverse_lazy ('ListaSnowboard')
+    
+    
+    
+    

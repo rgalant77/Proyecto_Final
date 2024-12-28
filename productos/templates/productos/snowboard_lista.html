@@ -1,0 +1,18 @@
+{% extends 'productos/base.html' %}
+
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+
+{% block main %}
+    <ul>
+        {% for snowboard in list_snowboard %}
+            <li>{{ snowboard.marca }} | {{ snowboard.modelo }} | {{ snowboard.tamaño }} | {{ snowboard.color }}
+                <a href="{% url 'VerSnowboard' snowboard.pk %}">Ver</a>
+                <a href="{% url 'EditarSnowboard' snowboard.pk %}">Editar</a>
+                <a href="{% url 'BorrarSnowboard' snowboard.pk %}">Borrar</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock main %}

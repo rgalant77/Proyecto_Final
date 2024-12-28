@@ -1,0 +1,9 @@
+{% extends 'productos/base.html' %}
+
+{% load static %}
+
+{% block title %} Detalle {% endblock title %}
+
+{% block main %}
+    <p>Esta es la tabla {{snowboard.marca}} de {{snowboard.modelo}} de {{snowboard.tamaño}} y {{snowboard.color}}</p>
+{% endblock main %}
