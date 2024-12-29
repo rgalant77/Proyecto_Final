@@ -16,7 +16,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'productos/css/styles.css' %}" rel="stylesheet" />
     </head>
-    <body id="page-top">
+    <body id="page-top" style="letter-spacing: 0em;">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
@@ -33,16 +33,24 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               <li><a class="dropdown-item" href="{% url 'BuscarAntiparra' %}">Buscar</a></li>
-                              <li><a class="dropdown-item" href="{% url 'FormSnowboard' %}">Agregar Snowboard</a></li>
-                              <li><a class="dropdown-item" href="{% url 'FormSki' %}">Agregar Ski</a></li>
-                              <li><a class="dropdown-item" href="{% url 'FormAntiparras' %}">Agregar Antiparras</a></li>
+                                {% if request.user.is_superuser %}
+                                    <li><a class="dropdown-item" href="{% url 'FormSnowboard' %}">Agregar Snowboard</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'FormSki' %}">Agregar Ski</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'FormAntiparras' %}">Agregar Antiparras</a></li>
+                                {% endif %}
                             </ul>
                           </div>
                         <li class="nav-item"><a class="nav-link" href="{% url 'snowboard' %}">snowboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'ski' %}">ski</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'antiparras' %}">antiparras</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">nosotros</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'ListaSnowboard' %}">ListaSnowboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'CrearSnowboard' %}">CrearSnowboard</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">Logout</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Iniciar sesion</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

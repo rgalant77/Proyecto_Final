@@ -1,0 +1,22 @@
+{% extends "productos/base.html" %}
+
+{% load static %}
+
+
+{% block main %}
+<section class="about-section text-center" id="about">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="text-white mb-4">Sobre Nosotros</h2>
+                <p class="text-white-50">
+                    En SnowCenter, somos apasionados por la aventura y la naturaleza. Fundada por un grupo de entusiastas del aire libre, nuestra misión es ofrecerte los mejores productos para que disfrutes al máximo de tus actividades en la montaña, ya sea esquiando, haciendo snowboard o simplemente explorando los hermosos paisajes invernales.
+                    <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
+                    Porque cada montaña tiene una historia y queremos ser parte de la tuya.
+                </p>
+            </div>
+        </div>
+        <img class="img-fluid" src="{% static 'productos/assets/img/mountain.jpg' %}" alt="..." />
+    </div>
+</section>
+{% endblock main %}

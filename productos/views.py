@@ -5,6 +5,12 @@ from productos.forms import AntiparrasFormulario
 from productos.forms import BuscaAntiparrasForm
 from .models import Snowboard, Ski, Antiparras
 from productos.forms import BuscaAntiparrasForm
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from django.http import HttpResponse
@@ -12,14 +18,20 @@ from django.http import HttpResponse
 def inicio(request):
     return render(request, "productos/inicio.html")
 
+@login_required
 def snowboard(request):
     return render(request, "productos/snowboard.html")
 
+@login_required
 def ski(request):
     return render(request, "productos/ski.html")
 
+@login_required
 def antiparras(request):
     return render(request, "productos/antiparras.html")
+
+def nosotros(request):
+    return render(request, "productos/nosotros.html")
 
 
 
@@ -99,13 +111,10 @@ def buscar_antiparra(request):
     return render(request, "productos/buscar_antiparras.html", {"mi_formulario": mi_formulario})
 
 
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
 
 
-class SnowboardListView (ListView):
+
+class SnowboardListView (LoginRequiredMixin, ListView):
     model= Snowboard
     context_object_name= "list_snowboard"
     template_name= "productos/snowboard_lista.html"
@@ -115,7 +124,7 @@ class SnowboardDetailView (DetailView):
     template_name= "productos/snowboard_detalle.html"
     
 
-class SnowboardCreateView (CreateView):
+class SnowboardCreateView (LoginRequiredMixin, CreateView):
     model= Snowboard
     template_name= "productos/snowboard_crear.html"
     success_url= reverse_lazy ('ListaSnowboard')

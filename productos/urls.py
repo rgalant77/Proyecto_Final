@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.inicio, name= "inicio"),
     path('snowboard/', views.snowboard, name= "snowboard"),
     path('ski/', views.ski, name= "ski"),
+    path('nosotros/', views.nosotros, name= "nosotros"),
     path('antiparras/', views.antiparras, name= "antiparras"),
     path('snowboard-vbc/', views.SnowboardListView.as_view(), name= "ListaSnowboard"),
     path('snowboard-crear', views.SnowboardCreateView.as_view(), name= "CrearSnowboard"),
