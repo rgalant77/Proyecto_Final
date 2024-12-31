@@ -29,7 +29,7 @@
                     <ul class="navbar-nav ms-auto">
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                              Nieve/Enter
+                              Nieve
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               <li><a class="dropdown-item" href="{% url 'BuscarAntiparra' %}">Buscar</a></li>
@@ -46,10 +46,30 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">nosotros</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'ListaSnowboard' %}">ListaSnowboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'CrearSnowboard' %}">CrearSnowboard</a></li>
+                        {# DROPDOWN PARA LA CUENTA DE USUARIO #}
                         {% if request.user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">Logout</a></li>
+                            <img src="{{ request.user.avatar.imagen.url}}" alt="" height="40px">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ request.user.username }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'EditarPerfil' %}">Editar cuenta</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+
                         {% else %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Iniciar sesion</a></li>
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Cuenta
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Inciar Sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Register' %}">Crear cuenta</a></li>
+                                </ul>
+                            </div>
                         {% endif %}
                     </ul>
                 </div>

@@ -1,7 +1,17 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate 
-from users.forms import UserRegisterForm 
+from users.forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
+from django import forms
+from django.contrib.auth.models import User
+from users.forms import UserEditForm
+from users.models import Avatar
+from django.shortcuts import render, redirect
+
 
 def login_request(request):
 
@@ -44,3 +54,51 @@ def register(request):
 
     form = UserRegisterForm()     
     return render(request,"users/registro.html" ,  {"form":form, "msg_register": msg_register})
+
+
+
+# Vista de editar el perfil
+# Obligamos a loguearse para editar los datos del usuario activo
+@login_required
+def editar_perfil(request):
+
+    # El usuario para poder editar su perfil primero debe estar logueado.
+    # Al estar logueado, podremos encontrar dentro del request la instancia
+    # del usuario -> request.user
+    usuario = request.user
+    try:
+        avatar = usuario.avatar
+    except Avatar.DoesNotExist:
+        avatar= None
+    
+
+    if request.method == 'POST':
+
+        miFormulario = UserEditForm(request.POST, request.FILES, instance=usuario)
+
+        if miFormulario.is_valid():
+            miFormulario.save()
+            
+            if avatar:
+                avatar.imagen = miFormulario.cleaned_data.get("imagen")
+                avatar.save()
+                             
+            else:
+                Avatar.objects.create(user=usuario, imagen=miFormulario.cleaned_data.get("imagen"))
+            
+            # Retornamos al inicio una vez guardado los datos
+            return render(request, "productos/inicio.html")
+            
+    else:
+        miFormulario = UserEditForm(instance=request.user)
+
+    return render(request, "users/editar_usuario.html", {"mi_form": miFormulario,})
+
+    
+    
+class CambiarPassView(LoginRequiredMixin, PasswordChangeView):
+
+    template_name = "users/cambiar_pass.html"
+    success_url = reverse_lazy('EditarPerfil')
+    
+
