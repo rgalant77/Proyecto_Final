@@ -15,7 +15,7 @@ El proyecto se encuentra en desarrollo activo. Se están implementando nuevas fu
 Para instalar el proyecto en tu entorno local en Windows, sigue estos pasos:
 
 A. Clona el repositorio:
-git clone https://github.com/rgalant77/Snow_center.git
+git clone https://github.com/rgalant77/Proyecto_Final.git
 
 B. Ejecuta las migraciones:
 
