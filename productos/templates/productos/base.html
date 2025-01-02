@@ -44,8 +44,10 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'ski' %}">ski</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'antiparras' %}">antiparras</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'ListaSnowboard' %}">ListaSnowboard</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'CrearSnowboard' %}">CrearSnowboard</a></li>
+                        {% if request.user.is_superuser %}                        
+                            <li class="nav-item"><a class="nav-link" href="{% url 'ListaSnowboard' %}">ListaSnowboard</a></li>                                                
+                            <li class="nav-item"><a class="nav-link" href="{% url 'CrearSnowboard' %}">CrearSnowboard</a></li>
+                        {% endif %}
                         {# DROPDOWN PARA LA CUENTA DE USUARIO #}
                         {% if request.user.is_authenticated %}
                             <img src="{{ request.user.avatar.imagen.url}}" alt="" height="40px">
